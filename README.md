@@ -1,5 +1,6 @@
-# go-testing-practices
-Examples of testing practices in Go
+# go-od-practices
+
+The goal of this repo is to find examples of good practices that can be applied when writing Go.
 
 ## Benchmark
 
@@ -16,6 +17,10 @@ Example of how to use [data files](https://dave.cheney.net/2016/05/10/test-fixtu
 ## Dummy
 
 Example of how to use a dummy double.
+
+## Interface embedding
+
+Example on how to extend an interface provided by a third-party lib.
 
 ## Mock
 
