@@ -8,6 +8,7 @@ import (
 
 // Useful blog about interface embedding:
 // https://eli.thegreenplace.net/2020/embedding-in-go-part-2-interfaces-in-interfaces/
+// https://eli.thegreenplace.net/2020/embedding-in-go-part-3-interfaces-in-structs
 
 type ExtendedShape interface {
 	geometry.Shape
