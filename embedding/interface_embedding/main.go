@@ -12,7 +12,7 @@ type VerboseCache struct {
 }
 
 func (c *VerboseCache) Add(key string, value int) error {
-	fmt.Printf("addding key %s to cache\n", key)
+	fmt.Printf("Adding (key=%q,value=%d) to cache.\n", key, value)
 	c.adds++
 	return c.Cacher.Add(key, value)
 }
@@ -22,12 +22,11 @@ func (c *VerboseCache) numberOfAdds() int { return c.adds }
 func emptyCache(c cache.Cacher) {
 	_ = c.Delete("1")
 	_ = c.Delete("2")
-	_ = c.Delete("3")
 }
 
 func main() {
 	verboseCache := &VerboseCache{Cacher: cache.NewLRUCache(), adds: 0}
-	verboseCache = &VerboseCache{Cacher: cache.NewLFUCache(), adds: 0}
+	verboseCache.Cacher = cache.NewLFUCache()
 
 	_ = verboseCache.Add("1", 1)
 	_ = verboseCache.Add("2", 2)
