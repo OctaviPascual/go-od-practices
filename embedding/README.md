@@ -56,3 +56,4 @@ This was completely inspired from those 3 posts:
 - https://eli.thegreenplace.net/2020/embedding-in-go-part-1-structs-in-structs/
 - https://eli.thegreenplace.net/2020/embedding-in-go-part-2-interfaces-in-interfaces/
 - https://eli.thegreenplace.net/2020/embedding-in-go-part-3-interfaces-in-structs
+- https://fabianlindfors.se/blog/decorators-in-go-using-embedded-structs/
