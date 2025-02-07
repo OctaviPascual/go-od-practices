@@ -1,8 +1,8 @@
-# Embedding
+# Decorator
 
-This is an example that shows how to take advantage of embedding.
+This is an example that shows how to use decorator pattern in Go.
 
-Instead of dropping the final approach, it's worth to show each of the alternatives, from most basic to more advanced to see the improvements that each approach brings to the table. That way it's more evident why we do things that way and not another.
+Instead of just dropping the final approach, it's worth to show each of the alternatives, from most basic to more advanced to see the improvements that each approach brings to the table. That way it's more evident why we do things that way and not another.
 
 ## Intro
 

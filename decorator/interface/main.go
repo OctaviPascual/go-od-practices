@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/OctaviPascual/go-testing-practices/embedding/cache"
+	"github.com/OctaviPascual/go-od-practices/decorator/cache"
 )
 
 type VerboseCache struct {

@@ -14,17 +14,9 @@ Example of how to use [t.Cleanup function](https://tip.golang.org/pkg/testing/#T
 
 Example of how to use [data files](https://dave.cheney.net/2016/05/10/test-fixtures-in-go).
 
-## Dummy
+## Decorator
 
-Example of how to use a dummy double.
-
-## Interface embedding
-
-Example on how to extend an interface provided by a third-party lib.
-
-## Mock
-
-Example of how to use [testify mock](https://pkg.go.dev/github.com/stretchr/testify/mock).
+Example on how to use decorator pattern.
 
 ## Now
 
@@ -34,17 +26,15 @@ Example of how to test [time.Now](https://golang.org/pkg/time/#Now).
 
 Example of how to use [t.Parallel function](https://gist.github.com/posener/92a55c4cd441fc5e5e85f27bca008721).
 
-## Spy
-
-Example of how to add a spy test double.
-
-## Stub
-
-Example of how to add a [stub test double](https://ieftimov.com/post/testing-in-go-test-doubles-by-example/).
-
 ## Table based
 
 Example of how to use [table based tests](https://dave.cheney.net/2019/05/07/prefer-table-driven-tests).
+
+## Test doubles
+
+Examples of test doubles:
+- https://martinfowler.com/bliki/TestDouble.html
+- https://ieftimov.com/post/testing-in-go-test-doubles-by-example/
 
 ## Ticker
 

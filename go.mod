@@ -1,4 +1,4 @@
-module github.com/OctaviPascual/go-testing-practices
+module github.com/OctaviPascual/go-od-practices
 
 go 1.14
 
