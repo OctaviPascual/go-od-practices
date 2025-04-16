@@ -9,9 +9,17 @@ import (
 
 const defaultTimeout = time.Minute
 
-type ServerOption func(*ServerOptions) error
+type ServerOption interface {
+	apply(*serverOptions) error
+}
 
-type ServerOptions struct {
+type serverOption func(*serverOptions) error
+
+func (o serverOption) apply(s *serverOptions) error {
+	return o(s)
+}
+
+type serverOptions struct {
 	localMode bool
 	timeout   time.Duration
 }
@@ -22,10 +30,10 @@ type Server struct {
 }
 
 func NewServer(options ...ServerOption) (*Server, error) {
-	serverOptions := ServerOptions{
+	serverOptions := serverOptions{
 		timeout: defaultTimeout,
 	}
-	if err := WithServerOptions(options...)(&serverOptions); err != nil {
+	if err := WithServerOptions(options...).apply(&serverOptions); err != nil {
 		return nil, err
 	}
 
@@ -41,7 +49,7 @@ func NewServer(options ...ServerOption) (*Server, error) {
 }
 
 func WithTimeout(timeout time.Duration) ServerOption {
-	return func(s *ServerOptions) error {
+	f := func(s *serverOptions) error {
 		if timeout == time.Duration(0) {
 			return errors.New("timeout cannot be zero")
 		}
@@ -49,24 +57,27 @@ func WithTimeout(timeout time.Duration) ServerOption {
 		s.timeout = timeout
 		return nil
 	}
+	return serverOption(f)
 }
 
 func WithLocalMode() ServerOption {
-	return func(s *ServerOptions) error {
+	f := func(s *serverOptions) error {
 		s.localMode = true
 		return nil
 	}
+	return serverOption(f)
 }
 
 func WithServerOptions(options ...ServerOption) ServerOption {
-	return func(o *ServerOptions) error {
+	f := func(s *serverOptions) error {
 		for _, option := range options {
-			if err := option(o); err != nil {
+			if err := option.apply(s); err != nil {
 				return fmt.Errorf("error applying option: %w", err)
 			}
 		}
 		return nil
 	}
+	return serverOption(f)
 }
 
 func (s *Server) Run() {}
