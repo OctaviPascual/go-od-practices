@@ -4,6 +4,8 @@ import (
 	"time"
 )
 
+const defaultTimeout = time.Minute
+
 type ServerOption func(*Server)
 
 type Server struct {
@@ -11,7 +13,9 @@ type Server struct {
 }
 
 func NewServer(options ...ServerOption) *Server {
-	s := Server{}
+	s := Server{
+		timeout: defaultTimeout,
+	}
 	for _, option := range options {
 		option(&s)
 	}
