@@ -4,6 +4,7 @@ import (
 	"context"
 	"io"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -11,6 +12,7 @@ import (
 type greeter struct {
 	writer io.StringWriter
 
+	wg      sync.WaitGroup
 	ctx     context.Context
 	cancel  context.CancelFunc
 	ticker  *time.Ticker
@@ -33,7 +35,11 @@ func newGreeter(writer io.StringWriter) *greeter {
 // start allows to decouple the creation of greeter from the moment it starts working.
 // This is useful for testing as we can safely mutate greeter fields.
 func (g *greeter) start() {
-	go g.writeLoop()
+	g.wg.Add(1)
+	go func() {
+		g.writeLoop()
+		g.wg.Done()
+	}()
 }
 
 func (g *greeter) writeLoop() {
@@ -50,6 +56,7 @@ func (g *greeter) writeLoop() {
 func (g *greeter) stop() {
 	g.ticker.Stop()
 	g.cancel()
+	g.wg.Wait()
 }
 
 func main() {
